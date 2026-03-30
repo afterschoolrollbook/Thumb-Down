@@ -192,6 +192,7 @@ export default function Home() {
   const [cooldown, setCooldown] = useState(0)
   const [maxCooldown, setMaxCooldown] = useState(12)
   const [showCooldownAd, setShowCooldownAd] = useState(false)
+  const [soundDownBanner, setSoundDownBanner] = useState(false)
 
   const t = LANGS[lang]
 
@@ -211,6 +212,15 @@ export default function Home() {
         setShowCooldownAd(true)
       }
     }
+
+    // Supabase에서 설정 불러오기
+    fetch('/api/settings/get')
+      .then(r => r.json())
+      .then(data => {
+        if (data.cooldown) setMaxCooldown(data.cooldown)
+        if (data.soundDownBanner !== undefined) setSoundDownBanner(data.soundDownBanner)
+      })
+      .catch(() => {})
   }, [])
 
   // 쿨다운 타이머
@@ -338,29 +348,31 @@ export default function Home() {
             <span className="logo-text">Thumb<span>-Down</span></span>
           </a>
           <div className="header-right">
-            <a
-              href="https://www.sound-down.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                background: '#1a1a2e',
-                border: '1px solid #2a2a4a',
-                borderRadius: 8,
-                padding: '6px 12px',
-                color: '#8888ff',
-                fontSize: 13,
-                fontWeight: 600,
-                textDecoration: 'none',
-                transition: 'all 0.2s',
-              }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = '#5555cc'}
-              onMouseLeave={e => e.currentTarget.style.borderColor = '#2a2a4a'}
-            >
-              🔊 Sound-Down
-            </a>
+            {soundDownBanner && (
+              <a
+                href="https://www.sound-down.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  background: '#1a1a2e',
+                  border: '1px solid #2a2a4a',
+                  borderRadius: 8,
+                  padding: '6px 12px',
+                  color: '#8888ff',
+                  fontSize: 13,
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  transition: 'all 0.2s',
+                }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = '#5555cc'}
+                onMouseLeave={e => e.currentTarget.style.borderColor = '#2a2a4a'}
+              >
+                🔊 Sound-Down
+              </a>
+            )}
             <button className="lang-btn" onClick={toggleLang}>
               {lang === 'ko' ? '🇺🇸 English' : '🇰🇷 한국어'}
             </button>
@@ -526,7 +538,8 @@ export default function Home() {
       </div>
 
       {/* ===== Sound-Down 크로스 프로모션 배너 ===== */}
-      <div className="wrap" style={{ marginBottom: 24 }}>
+      {soundDownBanner && (
+        <div className="wrap" style={{ marginBottom: 24 }}>
         <a
           href="https://www.sound-down.com"
           target="_blank"
@@ -571,6 +584,7 @@ export default function Home() {
           </div>
         </a>
       </div>
+      )}
 
       {/* ===== FOOTER ===== */}
       <footer className="footer">
