@@ -188,6 +188,7 @@ export default function Admin() {
   // 설정값
   const [cooldownDur, setCooldownDur] = useState(12)
   const [adsOn, setAdsOn] = useState(true)
+  const [soundDownBanner, setSoundDownBanner] = useState(false)
   const [saved, setSaved] = useState(false)
 
   // 제휴 설정
@@ -218,6 +219,7 @@ export default function Admin() {
       const data = await res.json()
       setCooldownDur(data.cooldown)
       setAdsOn(data.adsOn)
+      setSoundDownBanner(data.soundDownBanner ?? false)
       setAffiliateLinks(data.affiliateLinks)
       setAffiliateEnabled(data.affiliateEnabled)
     } catch (err) {
@@ -259,7 +261,7 @@ export default function Admin() {
 
   const handleSave = async () => {
     try {
-      await kvSave({ cooldown: cooldownDur, adsOn })
+      await kvSave({ cooldown: cooldownDur, adsOn, soundDownBanner })
       setSaved(true)
       setTimeout(() => setSaved(false), 2500)
     } catch {
@@ -469,6 +471,17 @@ export default function Admin() {
                   <div style={{ color: '#666', fontSize: 13, marginTop: 2 }}>{adsOn ? '광고가 표시됩니다' : '광고가 숨겨집니다'}</div>
                 </div>
                 <Toggle value={adsOn} onChange={setAdsOn} />
+              </div>
+            </div>
+            <div style={{ marginBottom: 28 }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div>
+                  <div style={{ fontWeight: 600 }}>🔊 Sound-Down 배너 노출</div>
+                  <div style={{ color: '#666', fontSize: 13, marginTop: 2 }}>
+                    {soundDownBanner ? '헤더 + 푸터 위 배너가 표시됩니다' : '배너가 숨겨집니다 (광고 미승인 시 권장)'}
+                  </div>
+                </div>
+                <Toggle value={soundDownBanner} onChange={setSoundDownBanner} />
               </div>
             </div>
             <button onClick={handleSave} style={{ ...S.btn(saved ? '#2d7a2d' : '#e63946'), transition: 'background 0.3s' }}>

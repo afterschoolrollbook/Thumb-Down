@@ -193,6 +193,7 @@ export default function Home() {
   const [maxCooldown, setMaxCooldown] = useState(12)
   const [showCooldownAd, setShowCooldownAd] = useState(false)
   const [soundDownBanner, setSoundDownBanner] = useState(false)
+  const [adsOn, setAdsOn] = useState(true)
 
   const t = LANGS[lang]
 
@@ -219,6 +220,7 @@ export default function Home() {
       .then(data => {
         if (data.cooldown) setMaxCooldown(data.cooldown)
         if (data.soundDownBanner !== undefined) setSoundDownBanner(data.soundDownBanner)
+        if (data.adsOn !== undefined) setAdsOn(data.adsOn)
       })
       .catch(() => {})
   }, [])
@@ -381,23 +383,27 @@ export default function Home() {
       </header>
 
       {/* 상단 광고 */}
-      <div className="wrap" style={{ marginTop: 24 }}>
-        <AdSlot
-          slot={process.env.NEXT_PUBLIC_AD_SLOT_TOP || '1111111111'}
-          label={t.adLabel}
-        />
-      </div>
+      {adsOn && (
+        <div className="wrap" style={{ marginTop: 24 }}>
+          <AdSlot
+            slot={process.env.NEXT_PUBLIC_AD_SLOT_TOP || '1111111111'}
+            label={t.adLabel}
+          />
+        </div>
+      )}
 
       {/* ===== 좌우 사이드바 + 메인 레이아웃 ===== */}
       <div className="page-layout">
 
         {/* 왼쪽 사이드바 광고 */}
-        <aside className="sidebar">
-          <SidebarAd
-            slot={process.env.NEXT_PUBLIC_AD_SLOT_LEFT || '5555555555'}
-            label={t.adLabel}
-          />
-        </aside>
+        {adsOn && (
+          <aside className="sidebar">
+            <SidebarAd
+              slot={process.env.NEXT_PUBLIC_AD_SLOT_LEFT || '5555555555'}
+              label={t.adLabel}
+            />
+          </aside>
+        )}
 
         {/* 메인 콘텐츠 */}
         <main className="main-content">
@@ -459,12 +465,14 @@ export default function Home() {
                   <p>{t.cooldownSub}</p>
                 </div>
               </div>
-              <AdSlot
-                slot={process.env.NEXT_PUBLIC_AD_SLOT_COOLDOWN || '2222222222'}
-                format="rectangle"
-                tall={true}
-                label={t.adLabel}
-              />
+              {adsOn && (
+                <AdSlot
+                  slot={process.env.NEXT_PUBLIC_AD_SLOT_COOLDOWN || '2222222222'}
+                  format="rectangle"
+                  tall={true}
+                  label={t.adLabel}
+                />
+              )}
             </div>
           )}
 
@@ -506,7 +514,7 @@ export default function Home() {
           )}
 
           {/* 결과 하단 광고 */}
-          {thumbs.length > 0 && (
+          {thumbs.length > 0 && adsOn && (
             <AdSlot
               slot={process.env.NEXT_PUBLIC_AD_SLOT_MIDDLE || '3333333333'}
               label={t.adLabel}
@@ -528,12 +536,14 @@ export default function Home() {
         </main>
 
         {/* 오른쪽 사이드바 광고 */}
-        <aside className="sidebar">
-          <SidebarAd
-            slot={process.env.NEXT_PUBLIC_AD_SLOT_RIGHT || '6666666666'}
-            label={t.adLabel}
-          />
-        </aside>
+        {adsOn && (
+          <aside className="sidebar">
+            <SidebarAd
+              slot={process.env.NEXT_PUBLIC_AD_SLOT_RIGHT || '6666666666'}
+              label={t.adLabel}
+            />
+          </aside>
+        )}
 
       </div>
 
@@ -589,10 +599,12 @@ export default function Home() {
       {/* ===== FOOTER ===== */}
       <footer className="footer">
         <div className="wrap">
-          <AdSlot
-            slot={process.env.NEXT_PUBLIC_AD_SLOT_FOOTER || '4444444444'}
-            label={t.adLabel}
-          />
+          {adsOn && (
+            <AdSlot
+              slot={process.env.NEXT_PUBLIC_AD_SLOT_FOOTER || '4444444444'}
+              label={t.adLabel}
+            />
+          )}
           <p className="footer-text">{t.footer}</p>
           <a href="/admin" className="admin-link">admin</a>
         </div>
