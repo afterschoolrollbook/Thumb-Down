@@ -99,7 +99,7 @@ function getThumbs(videoId) {
 // ====================================================
 // AdSense 슬롯 컴포넌트
 // ====================================================
-function AdSlot({ slot, format = 'auto', tall = false, label = '광고' }) {
+function AdSlot({ slot, format = 'auto', tall = false, label = '광고', style: extraStyle = {} }) {
   const ref = useRef(null)
   const client = process.env.NEXT_PUBLIC_ADSENSE_CLIENT
 
@@ -112,7 +112,7 @@ function AdSlot({ slot, format = 'auto', tall = false, label = '광고' }) {
 
   if (!client) {
     return (
-      <div className={`ad-slot${tall ? ' tall' : ''}`}>
+      <div className={`ad-slot${tall ? ' tall' : ''}`} style={extraStyle}>
         <span style={{ fontSize: 20 }}>📢</span>
         <span>{label} 영역</span>
         <span style={{ fontSize: 11, color: '#444', marginTop: 4 }}>
@@ -123,7 +123,7 @@ function AdSlot({ slot, format = 'auto', tall = false, label = '광고' }) {
   }
 
   return (
-    <div>
+    <div style={extraStyle}>
       <p className="ad-tag">{label}</p>
       <ins
         ref={ref}
@@ -133,6 +133,48 @@ function AdSlot({ slot, format = 'auto', tall = false, label = '광고' }) {
         data-ad-slot={slot}
         data-ad-format={format}
         data-full-width-responsive="true"
+      />
+    </div>
+  )
+}
+
+// ====================================================
+// 사이드바 광고 컴포넌트 (PC 전용)
+// ====================================================
+function SidebarAd({ slot, label = '광고' }) {
+  const ref = useRef(null)
+  const client = process.env.NEXT_PUBLIC_ADSENSE_CLIENT
+
+  useEffect(() => {
+    if (!client || !ref.current) return
+    try {
+      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+    } catch {}
+  }, [client])
+
+  if (!client) {
+    return (
+      <div className="sidebar-ad-placeholder">
+        <span style={{ fontSize: 18 }}>📢</span>
+        <span style={{ fontSize: 12, color: '#555', marginTop: 6 }}>{label}</span>
+        <span style={{ fontSize: 10, color: '#444', marginTop: 4, textAlign: 'center' }}>
+          160×600
+        </span>
+      </div>
+    )
+  }
+
+  return (
+    <div className="sidebar-ad-wrap">
+      <p className="ad-tag">{label}</p>
+      <ins
+        ref={ref}
+        className="adsbygoogle"
+        style={{ display: 'block', width: '160px', height: '600px' }}
+        data-ad-client={client}
+        data-ad-slot={slot}
+        data-ad-format="vertical"
+        data-full-width-responsive="false"
       />
     </div>
   )
@@ -199,7 +241,7 @@ export default function Home() {
     }
 
     setLoading(true)
-    await new Promise((r) => setTimeout(r, 300)) // 짧은 로딩 효과
+    await new Promise((r) => setTimeout(r, 300))
     setThumbs(getThumbs(id))
     setLoading(false)
 
@@ -236,7 +278,6 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content={t.metaTitle} />
         <meta property="og:description" content={t.metaDesc} />
-        {/* AdSense 스크립트 */}
         {process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
           <script
             async
@@ -244,6 +285,49 @@ export default function Home() {
             crossOrigin="anonymous"
           />
         )}
+        <style>{`
+          .page-layout {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            align-items: flex-start;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 12px;
+          }
+          .sidebar {
+            display: none;
+            flex-shrink: 0;
+            width: 180px;
+            padding-top: 24px;
+            position: sticky;
+            top: 24px;
+          }
+          .sidebar-ad-placeholder {
+            width: 160px;
+            height: 600px;
+            background: #161616;
+            border: 1px dashed #2a2a2a;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 12px;
+          }
+          .sidebar-ad-wrap {
+            width: 160px;
+          }
+          .main-content {
+            flex: 1;
+            min-width: 0;
+            max-width: 780px;
+          }
+          @media (min-width: 1100px) {
+            .sidebar { display: block; }
+          }
+        `}</style>
       </Head>
 
       {/* ===== HEADER ===== */}
@@ -254,6 +338,29 @@ export default function Home() {
             <span className="logo-text">Thumb<span>-Down</span></span>
           </a>
           <div className="header-right">
+            <a
+              href="https://www.sound-down.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                background: '#1a1a2e',
+                border: '1px solid #2a2a4a',
+                borderRadius: 8,
+                padding: '6px 12px',
+                color: '#8888ff',
+                fontSize: 13,
+                fontWeight: 600,
+                textDecoration: 'none',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = '#5555cc'}
+              onMouseLeave={e => e.currentTarget.style.borderColor = '#2a2a4a'}
+            >
+              🔊 Sound-Down
+            </a>
             <button className="lang-btn" onClick={toggleLang}>
               {lang === 'ko' ? '🇺🇸 English' : '🇰🇷 한국어'}
             </button>
@@ -269,135 +376,201 @@ export default function Home() {
         />
       </div>
 
-      <main className="wrap">
-        {/* ===== HERO ===== */}
-        <section className="hero">
-          <div className="hero-badge">{t.badge}</div>
-          <h1 className="hero-title">
-            {t.heroTitle1} <span className="highlight">{t.heroTitle2}</span>
-          </h1>
-          <p className="hero-sub">{t.heroSub}</p>
-        </section>
+      {/* ===== 좌우 사이드바 + 메인 레이아웃 ===== */}
+      <div className="page-layout">
 
-        {/* ===== SEARCH FORM ===== */}
-        <form onSubmit={handleSubmit}>
-          <div className="search-box">
-            <input
-              type="text"
-              className="search-input"
-              placeholder={t.placeholder}
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              disabled={loading || cooldown > 0}
-            />
-            <button
-              type="submit"
-              className={`search-btn${cooldown > 0 ? ' waiting' : ''}`}
-              disabled={loading || cooldown > 0}
-            >
-              {loading
-                ? t.btnLoading
-                : cooldown > 0
-                ? t.btnWait(cooldown)
-                : t.btnGet}
-            </button>
-          </div>
-          {error && <p className="error-text">{error}</p>}
-        </form>
+        {/* 왼쪽 사이드바 광고 */}
+        <aside className="sidebar">
+          <SidebarAd
+            slot={process.env.NEXT_PUBLIC_AD_SLOT_LEFT || '5555555555'}
+            label={t.adLabel}
+          />
+        </aside>
 
-        {/* ===== 쿨다운 + 광고 (핵심 수익 영역) ===== */}
-        {showCooldownAd && cooldown > 0 && (
-          <div className="cooldown-block">
-            <div className="cooldown-top">
-              {/* 링 타이머 */}
-              <div className="ring-wrap">
-                <svg className="ring-svg" viewBox="0 0 56 56">
-                  <circle className="ring-bg" cx="28" cy="28" r="24" />
-                  <circle
-                    className="ring-progress"
-                    cx="28"
-                    cy="28"
-                    r="24"
-                    strokeDasharray={circumference}
-                    strokeDashoffset={circumference * (1 - cooldownPct)}
-                  />
-                </svg>
-                <span className="ring-num">{cooldown}</span>
-              </div>
-              <div className="cooldown-text">
-                <strong>{t.cooldownTitle}</strong>
-                <p>{t.cooldownSub}</p>
-              </div>
+        {/* 메인 콘텐츠 */}
+        <main className="main-content">
+          {/* ===== HERO ===== */}
+          <section className="hero">
+            <div className="hero-badge">{t.badge}</div>
+            <h1 className="hero-title">
+              {t.heroTitle1} <span className="highlight">{t.heroTitle2}</span>
+            </h1>
+            <p className="hero-sub">{t.heroSub}</p>
+          </section>
+
+          {/* ===== SEARCH FORM ===== */}
+          <form onSubmit={handleSubmit}>
+            <div className="search-box">
+              <input
+                type="text"
+                className="search-input"
+                placeholder={t.placeholder}
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                disabled={loading || cooldown > 0}
+              />
+              <button
+                type="submit"
+                className={`search-btn${cooldown > 0 ? ' waiting' : ''}`}
+                disabled={loading || cooldown > 0}
+              >
+                {loading
+                  ? t.btnLoading
+                  : cooldown > 0
+                  ? t.btnWait(cooldown)
+                  : t.btnGet}
+              </button>
             </div>
+            {error && <p className="error-text">{error}</p>}
+          </form>
 
-            {/* 쿨다운 중 광고 (가장 중요한 광고 슬롯!) */}
-            <AdSlot
-              slot={process.env.NEXT_PUBLIC_AD_SLOT_COOLDOWN || '2222222222'}
-              format="rectangle"
-              tall={true}
-              label={t.adLabel}
-            />
-          </div>
-        )}
-
-        {/* ===== 결과 썸네일 ===== */}
-        {thumbs.length > 0 && (
-          <section className="results-section">
-            <h2 className="results-title">{t.resultsTitle}</h2>
-            <div className="thumb-grid">
-              {thumbs.map((thumb) => (
-                <div key={thumb.key} className="thumb-card">
-                  <div className="thumb-img-wrap">
-                    <img
-                      src={thumb.url}
-                      alt={thumb.label}
-                      className="thumb-img"
-                      onError={(e) => {
-                        e.target.style.display = 'none'
-                        e.target.nextSibling.style.display = 'flex'
-                      }}
+          {/* ===== 쿨다운 + 광고 ===== */}
+          {showCooldownAd && cooldown > 0 && (
+            <div className="cooldown-block">
+              <div className="cooldown-top">
+                <div className="ring-wrap">
+                  <svg className="ring-svg" viewBox="0 0 56 56">
+                    <circle className="ring-bg" cx="28" cy="28" r="24" />
+                    <circle
+                      className="ring-progress"
+                      cx="28"
+                      cy="28"
+                      r="24"
+                      strokeDasharray={circumference}
+                      strokeDashoffset={circumference * (1 - cooldownPct)}
                     />
-                    <div className="thumb-na">
-                      <span>🚫</span>
-                      <span style={{ fontSize: 12 }}>{t.notAvail}</span>
+                  </svg>
+                  <span className="ring-num">{cooldown}</span>
+                </div>
+                <div className="cooldown-text">
+                  <strong>{t.cooldownTitle}</strong>
+                  <p>{t.cooldownSub}</p>
+                </div>
+              </div>
+              <AdSlot
+                slot={process.env.NEXT_PUBLIC_AD_SLOT_COOLDOWN || '2222222222'}
+                format="rectangle"
+                tall={true}
+                label={t.adLabel}
+              />
+            </div>
+          )}
+
+          {/* ===== 결과 썸네일 ===== */}
+          {thumbs.length > 0 && (
+            <section className="results-section">
+              <h2 className="results-title">{t.resultsTitle}</h2>
+              <div className="thumb-grid">
+                {thumbs.map((thumb) => (
+                  <div key={thumb.key} className="thumb-card">
+                    <div className="thumb-img-wrap">
+                      <img
+                        src={thumb.url}
+                        alt={thumb.label}
+                        className="thumb-img"
+                        onError={(e) => {
+                          e.target.style.display = 'none'
+                          e.target.nextSibling.style.display = 'flex'
+                        }}
+                      />
+                      <div className="thumb-na">
+                        <span>🚫</span>
+                        <span style={{ fontSize: 12 }}>{t.notAvail}</span>
+                      </div>
+                    </div>
+                    <div className="thumb-footer">
+                      <span className="quality-badge">{thumb.label}</span>
+                      <button
+                        className="dl-btn"
+                        onClick={() => handleDownload(thumb.url, thumb.key)}
+                      >
+                        ↓ {t.dlBtn}
+                      </button>
                     </div>
                   </div>
-                  <div className="thumb-footer">
-                    <span className="quality-badge">{thumb.label}</span>
-                    <button
-                      className="dl-btn"
-                      onClick={() => handleDownload(thumb.url, thumb.key)}
-                    >
-                      ↓ {t.dlBtn}
-                    </button>
-                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* 결과 하단 광고 */}
+          {thumbs.length > 0 && (
+            <AdSlot
+              slot={process.env.NEXT_PUBLIC_AD_SLOT_MIDDLE || '3333333333'}
+              label={t.adLabel}
+            />
+          )}
+
+          {/* ===== 사용 방법 ===== */}
+          <section className="how-section">
+            <h2 className="section-title">{t.howTitle}</h2>
+            <div className="steps">
+              {[t.how1, t.how2, t.how3].map((text, i) => (
+                <div key={i} className="step">
+                  <div className="step-num">{i + 1}</div>
+                  <p>{text}</p>
                 </div>
               ))}
             </div>
           </section>
-        )}
+        </main>
 
-        {/* 결과 하단 광고 */}
-        {thumbs.length > 0 && (
-          <AdSlot
-            slot={process.env.NEXT_PUBLIC_AD_SLOT_MIDDLE || '3333333333'}
+        {/* 오른쪽 사이드바 광고 */}
+        <aside className="sidebar">
+          <SidebarAd
+            slot={process.env.NEXT_PUBLIC_AD_SLOT_RIGHT || '6666666666'}
             label={t.adLabel}
           />
-        )}
+        </aside>
 
-        {/* ===== 사용 방법 ===== */}
-        <section className="how-section">
-          <h2 className="section-title">{t.howTitle}</h2>
-          <div className="steps">
-            {[t.how1, t.how2, t.how3].map((text, i) => (
-              <div key={i} className="step">
-                <div className="step-num">{i + 1}</div>
-                <p>{text}</p>
+      </div>
+
+      {/* ===== Sound-Down 크로스 프로모션 배너 ===== */}
+      <div className="wrap" style={{ marginBottom: 24 }}>
+        <a
+          href="https://www.sound-down.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: 'none' }}
+        >
+          <div style={{
+            background: 'linear-gradient(135deg, #0d0d2b 0%, #1a1a3e 100%)',
+            border: '1px solid #2a2a5a',
+            borderRadius: 14,
+            padding: '20px 28px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 16,
+            cursor: 'pointer',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+              <span style={{ fontSize: 36 }}>🔊</span>
+              <div>
+                <div style={{ fontWeight: 800, fontSize: 16, color: '#aaaaff', marginBottom: 4 }}>
+                  Sound-Down
+                </div>
+                <div style={{ color: '#6666aa', fontSize: 13 }}>
+                  {lang === 'ko'
+                    ? '무료 효과음 다운로드 — 유튜버·크리에이터를 위한 CC0 사운드'
+                    : 'Free Sound Effects — CC0 Sounds for YouTubers & Creators'}
+                </div>
               </div>
-            ))}
+            </div>
+            <div style={{
+              background: '#3333aa',
+              color: '#fff',
+              borderRadius: 8,
+              padding: '8px 16px',
+              fontSize: 13,
+              fontWeight: 700,
+              flexShrink: 0,
+            }}>
+              {lang === 'ko' ? '바로가기 →' : 'Visit →'}
+            </div>
           </div>
-        </section>
-      </main>
+        </a>
+      </div>
 
       {/* ===== FOOTER ===== */}
       <footer className="footer">
