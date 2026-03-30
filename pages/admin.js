@@ -343,7 +343,7 @@ export default function Admin() {
           <div style={{ ...S.wrap, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div>
               <h1 style={{ fontSize: 22, fontWeight: 800 }}>관리자 대시보드</h1>
-              <p style={{ color: '#555', fontSize: 13, marginTop: 2 }}>Thumb-Down Admin Panel · Vercel KV 연동</p>
+              <p style={{ color: '#555', fontSize: 13, marginTop: 2 }}>Thumb-Down Admin Panel · Supabase 연동</p>
             </div>
             <a href="/" style={{ color: '#666', fontSize: 13, textDecoration: 'none' }}>← 사이트 보기</a>
           </div>
@@ -378,7 +378,7 @@ export default function Admin() {
                 ✅ <strong>KV 연동 순서:</strong><br />
                 1. Vercel 대시보드 → Storage → Create KV Database<br />
                 2. 프로젝트에 KV 연결 → 환경변수 자동 추가됨<br />
-                3. 터미널에서 <code style={{ color: '#ff8888' }}>npm install @vercel/kv</code><br />
+                3. 터미널에서 <code style={{ color: '#ff8888' }}>npm install @supabase/supabase-js</code><br />
                 4. ADMIN_SECRET_TOKEN에 랜덤 문자열 입력 후 Redeploy
               </p>
             </div>
@@ -439,7 +439,7 @@ export default function Admin() {
               })}
             </div>
             <button onClick={handleAffiliateSave} style={{ ...S.btn(affiliateSaved ? '#2d7a2d' : '#e63946'), transition: 'background 0.3s' }}>
-              {affiliateSaved ? '✅ KV 저장 완료!' : '제휴 설정 저장'}
+              {affiliateSaved ? '✅ Redis 저장 완료!' : '제휴 설정 저장'}
             </button>
           </div>
 
@@ -472,7 +472,7 @@ export default function Admin() {
               </div>
             </div>
             <button onClick={handleSave} style={{ ...S.btn(saved ? '#2d7a2d' : '#e63946'), transition: 'background 0.3s' }}>
-              {saved ? '✅ KV 저장 완료!' : '설정 저장'}
+              {saved ? '✅ Redis 저장 완료!' : '설정 저장'}
             </button>
           </div>
 
@@ -480,7 +480,7 @@ export default function Admin() {
           <div style={S.card}>
             <h2 style={S.cardTitle}>🔒 비밀번호 변경</h2>
             <p style={{ color: '#666', fontSize: 14, marginBottom: 20 }}>
-              변경된 비밀번호는 <strong style={{ color: '#aaa' }}>Vercel KV에 해시 저장</strong>되어
+              변경된 비밀번호는 <strong style={{ color: '#aaa' }}>Supabase에 SHA-256 해시 저장</strong>되어
               모든 기기에서 영구 적용됩니다.
             </p>
             <form onSubmit={handlePasswordChange}>
@@ -515,8 +515,8 @@ export default function Admin() {
             <h2 style={S.cardTitle}>🚀 Vercel 배포 가이드</h2>
             {[
               { title: 'GitHub에 코드 업로드', desc: 'git add . → git commit → git push' },
-              { title: 'Vercel KV 생성', desc: 'Vercel 대시보드 → Storage → KV → Create → 프로젝트 연결' },
-              { title: '@vercel/kv 설치', desc: '터미널: npm install @vercel/kv → git push → 자동 재배포' },
+              { title: 'Upstash Redis 생성', desc: 'Vercel 대시보드 → Storage → Supabase → Create → 프로젝트 연결' },
+              { title: '@vercel/kv 설치', desc: '터미널: npm install @supabase/supabase-js → git push → 자동 재배포' },
               { title: '환경 변수 추가', desc: 'ADMIN_SECRET_TOKEN (랜덤 32자+) + NEXT_PUBLIC_ADMIN_PASSWORD 설정' },
               { title: '도메인 연결', desc: 'Vercel → Settings → Domains → 구매한 도메인 연결' },
             ].map((item, i) => (
