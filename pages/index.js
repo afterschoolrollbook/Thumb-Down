@@ -287,6 +287,7 @@ export default function Home() {
       <Head>
         <title>{t.metaTitle}</title>
         <meta name="google-site-verification" content="4s-t07Ji_IxVyEEVbpH---jQxGWU_6kAY-WbsI-lBZ4" />
+        <meta name="google-adsense-account" content="ca-pub-2161169464776476" />
         <meta name="description" content={t.metaDesc} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content={t.metaTitle} />
