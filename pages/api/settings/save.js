@@ -16,14 +16,15 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: '인증 실패' })
   }
 
-  const { cooldown, adsOn, affiliateLinks, affiliateEnabled } = req.body
+  const { cooldown, adsOn, soundDownBanner, affiliateLinks, affiliateEnabled } = req.body
 
   try {
     const rows = []
-    if (cooldown !== undefined)         rows.push({ key: 'site:cooldown',       value: cooldown })
-    if (adsOn !== undefined)            rows.push({ key: 'site:ads_on',          value: adsOn })
-    if (affiliateLinks !== undefined)   rows.push({ key: 'affiliate:links',      value: affiliateLinks })
-    if (affiliateEnabled !== undefined) rows.push({ key: 'affiliate:enabled',    value: affiliateEnabled })
+    if (cooldown !== undefined)           rows.push({ key: 'site:cooldown',            value: cooldown })
+    if (adsOn !== undefined)              rows.push({ key: 'site:ads_on',               value: adsOn })
+    if (soundDownBanner !== undefined)    rows.push({ key: 'site:sound_down_banner',    value: soundDownBanner })
+    if (affiliateLinks !== undefined)     rows.push({ key: 'affiliate:links',           value: affiliateLinks })
+    if (affiliateEnabled !== undefined)   rows.push({ key: 'affiliate:enabled',         value: affiliateEnabled })
 
     if (rows.length === 0) return res.status(400).json({ error: '저장할 데이터 없음' })
 

@@ -21,6 +21,7 @@ const supabase = createClient(
 const DEFAULTS = {
   cooldown: 12,
   adsOn: true,
+  soundDownBanner: false,
   affiliateLinks: {
     tubebuddy:     'https://www.tubebuddy.com/pricing?a=YOUR_ID',
     canva:         'https://partner.canva.com/YOUR_ID',
@@ -56,6 +57,7 @@ export default async function handler(req, res) {
     res.status(200).json({
       cooldown:         map['site:cooldown']        ?? DEFAULTS.cooldown,
       adsOn:            map['site:ads_on']           ?? DEFAULTS.adsOn,
+      soundDownBanner:  map['site:sound_down_banner'] ?? DEFAULTS.soundDownBanner,
       affiliateLinks:   map['affiliate:links']       ?? DEFAULTS.affiliateLinks,
       affiliateEnabled: map['affiliate:enabled']     ?? DEFAULTS.affiliateEnabled,
     })
