@@ -4,40 +4,40 @@ import Link from 'next/link'
 
 const CONTENT = {
   ko: {
-    metaTitle: '이용약관 | Sound-Down',
-    metaDesc: 'Sound-Down 이용약관 — 서비스 이용 조건 및 주의사항을 안내합니다.',
+    metaTitle: '이용약관 | Thumb-Down',
+    metaDesc: 'Thumb-Down 이용약관 — 서비스 이용 조건 및 주의사항을 안내합니다.',
     title: '이용약관',
     updated: '최종 업데이트: 2025년 1월 1일',
     sections: [
       {
         title: '1. 서비스 소개',
-        content: 'Sound-Down(sound-down.com)은 CC0 라이선스 효과음을 무료로 검색하고 다운로드할 수 있는 도구 서비스입니다. 본 서비스를 이용함으로써 아래 약관에 동의한 것으로 간주합니다.',
+        content: 'Thumb-Down(thumb-down.com)은 YouTube 영상의 썸네일 이미지를 무료로 다운로드할 수 있는 도구 서비스입니다. 본 서비스를 이용함으로써 아래 약관에 동의한 것으로 간주합니다.',
       },
       {
         title: '2. 서비스 이용 조건',
         content: '다음 조건에 동의하는 경우에만 서비스를 이용할 수 있습니다.',
         items: [
           '만 14세 이상이어야 합니다.',
-          '관련 법령을 준수해야 합니다.',
-          'CC0 음원은 저작권 없이 자유롭게 사용 가능하나, CC-BY 음원은 출처 표기가 필요합니다.',
+          '관련 법령 및 YouTube 서비스 이용약관을 준수해야 합니다.',
+          '다운로드한 이미지의 저작권은 원 콘텐츠 제작자에게 있습니다.',
           '서비스를 상업적 목적으로 무단 이용하거나 자동화(크롤링)하는 것을 금지합니다.',
         ],
       },
       {
         title: '3. 저작권 안내',
-        content: 'Sound-Down은 Freesound.org 등 공개 API를 통해 CC0 및 무료 상업용 음원을 제공합니다. CC0 음원은 출처 표기 없이 상업적으로 사용 가능합니다. CC-BY 음원은 원작자 출처 표기가 필요합니다. 각 음원의 라이선스를 반드시 확인하세요.',
+        content: 'Thumb-Down은 YouTube의 공개 이미지 서버(img.youtube.com)를 통해 썸네일을 제공합니다. 다운로드된 이미지의 저작권은 해당 유튜버 또는 YouTube에 있으며, 개인적인 참고 목적 외의 무단 상업적 사용은 저작권법 위반이 될 수 있습니다.',
       },
       {
         title: '4. 면책 조항',
-        content: 'Sound-Down은 이용자가 다운로드한 음원의 사용으로 인한 법적 문제에 대해 책임을 지지 않습니다. 서비스는 "있는 그대로" 제공되며, 특정 목적에 대한 적합성을 보증하지 않습니다.',
+        content: 'Thumb-Down은 이용자가 다운로드한 이미지의 사용으로 인한 법적 문제에 대해 책임을 지지 않습니다. 서비스는 "있는 그대로" 제공되며, 특정 목적에 대한 적합성을 보증하지 않습니다.',
       },
       {
         title: '5. 서비스 변경 및 중단',
-        content: 'Sound-Down은 사전 고지 없이 서비스를 변경하거나 일시 중단할 수 있습니다. 서비스 중단으로 인한 손해에 대해 책임을 지지 않습니다.',
+        content: 'Thumb-Down은 사전 고지 없이 서비스를 변경하거나 일시 중단할 수 있습니다. 서비스 중단으로 인한 손해에 대해 책임을 지지 않습니다.',
       },
       {
         title: '6. 광고',
-        content: '본 서비스는 Google AdSense를 통한 광고를 포함합니다. 광고 콘텐츠는 Google이 관리하며 Sound-Down과 무관합니다.',
+        content: '본 서비스는 Google AdSense를 통한 광고를 포함합니다. 광고 콘텐츠는 Google이 관리하며 Thumb-Down과 무관합니다.',
       },
       {
         title: '7. 준거법',
@@ -45,49 +45,49 @@ const CONTENT = {
       },
       {
         title: '8. 문의',
-        items: ['이메일: minsiljjag@gmail.com', '운영자: Sound-Down 운영팀'],
+        items: ['이메일: minsiljjag@gmail.com', '운영자: Thumb-Down 운영팀'],
       },
     ],
     linkPrivacy: '개인정보처리방침 →',
     linkFaq: '자주 묻는 질문 →',
-    footer: '© 2024 Sound-Down. CC0 무료 효과음 다운로드.',
+    footer: '© 2024 Thumb-Down. 유튜브 썸네일 무료 다운로더.',
     langBtn: '🇺🇸 English',
   },
   en: {
-    metaTitle: 'Terms of Service | Sound-Down',
-    metaDesc: 'Sound-Down Terms of Service — conditions and guidelines for using our service.',
+    metaTitle: 'Terms of Service | Thumb-Down',
+    metaDesc: 'Thumb-Down Terms of Service — conditions and guidelines for using our service.',
     title: 'Terms of Service',
     updated: 'Last updated: January 1, 2025',
     sections: [
       {
         title: '1. About the Service',
-        content: 'Sound-Down (sound-down.com) is a free tool for searching and downloading CC0-licensed sound effects. By using this service, you agree to the terms below.',
+        content: 'Thumb-Down (thumb-down.com) is a free tool that lets you download thumbnail images from YouTube videos. By using this service, you agree to the terms below.',
       },
       {
         title: '2. Conditions of Use',
         content: 'You may use this service only if you agree to the following conditions.',
         items: [
           'You must be at least 14 years old.',
-          'You must comply with applicable laws.',
-          'CC0 sounds may be used freely without attribution. CC-BY sounds require crediting the original author.',
+          'You must comply with applicable laws and YouTube\'s Terms of Service.',
+          'Copyright of downloaded images belongs to the original content creator.',
           'Unauthorized commercial use or automated access (scraping/crawling) of this service is prohibited.',
         ],
       },
       {
         title: '3. Copyright Notice',
-        content: 'Sound-Down provides CC0 and free commercial-use audio via public APIs such as Freesound.org. CC0 sounds can be used commercially without attribution. CC-BY sounds require crediting the original creator. Always check the license of each sound before use.',
+        content: 'Thumb-Down retrieves thumbnails via YouTube\'s public image server (img.youtube.com). Downloaded images are owned by the respective creator or YouTube. Any unauthorized commercial use beyond personal reference may constitute copyright infringement.',
       },
       {
         title: '4. Disclaimer',
-        content: 'Sound-Down is not responsible for any legal issues arising from your use of downloaded audio. The service is provided "as is" without any warranty of fitness for a particular purpose.',
+        content: 'Thumb-Down is not responsible for any legal issues arising from your use of downloaded images. The service is provided "as is" without any warranty of fitness for a particular purpose.',
       },
       {
         title: '5. Service Changes & Interruption',
-        content: 'Sound-Down may modify or temporarily suspend the service without prior notice. We are not liable for any damages resulting from service interruptions.',
+        content: 'Thumb-Down may modify or temporarily suspend the service without prior notice. We are not liable for any damages resulting from service interruptions.',
       },
       {
         title: '6. Advertising',
-        content: 'This service includes ads served by Google AdSense. Ad content is managed by Google and is unrelated to Sound-Down.',
+        content: 'This service includes ads served by Google AdSense. Ad content is managed by Google and is unrelated to Thumb-Down.',
       },
       {
         title: '7. Governing Law',
@@ -95,12 +95,12 @@ const CONTENT = {
       },
       {
         title: '8. Contact',
-        items: ['Email: minsiljjag@gmail.com', 'Operator: Sound-Down Team'],
+        items: ['Email: minsiljjag@gmail.com', 'Operator: Thumb-Down Team'],
       },
     ],
     linkPrivacy: 'Privacy Policy →',
     linkFaq: 'FAQ →',
-    footer: '© 2024 Sound-Down. Free CC0 Sound Effects Downloader.',
+    footer: '© 2024 Thumb-Down. Free YouTube Thumbnail Downloader.',
     langBtn: '🇰🇷 한국어',
   },
 }
@@ -109,14 +109,14 @@ export default function Terms() {
   const [lang, setLang] = useState('ko')
 
   useEffect(() => {
-    const saved = localStorage.getItem('sd_lang')
+    const saved = localStorage.getItem('yt_lang')
     if (saved && CONTENT[saved]) setLang(saved)
   }, [])
 
   const toggleLang = () => {
     const next = lang === 'ko' ? 'en' : 'ko'
     setLang(next)
-    localStorage.setItem('sd_lang', next)
+    localStorage.setItem('yt_lang', next)
   }
 
   const t = CONTENT[lang]
@@ -132,8 +132,8 @@ export default function Terms() {
       <header className="header">
         <div className="wrap header-inner">
           <Link href="/" className="logo">
-            <div className="logo-icon">🔊</div>
-            <span className="logo-text">Sound<span>-Down</span></span>
+            <div className="logo-icon">▶</div>
+            <span className="logo-text">Thumb<span>-Down</span></span>
           </Link>
           <button className="lang-btn" onClick={toggleLang}>{t.langBtn}</button>
         </div>
