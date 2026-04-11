@@ -5,97 +5,97 @@ import Link from 'next/link'
 const FAQS = {
   ko: [
     {
-      q: 'Thumb-Down은 무료인가요?',
+      q: 'Sound-Down은 무료인가요?',
       a: '네, 완전히 무료입니다. 회원가입이나 로그인 없이 바로 사용할 수 있습니다. 서비스 운영 비용은 Google AdSense 광고 수익으로 충당됩니다.',
     },
     {
-      q: '어떤 화질로 다운로드할 수 있나요?',
-      a: 'YouTube가 제공하는 모든 해상도를 선택할 수 있습니다. HD(maxresdefault, 1280×720), SD(sddefault, 640×480), HQ(hqdefault, 480×360), MQ(mqdefault, 320×180) 4가지 옵션을 지원합니다. 최고화질이 없는 영상은 자동으로 다음 화질로 대체됩니다.',
+      q: '다운로드한 효과음을 상업적으로 사용해도 되나요?',
+      a: 'Sound-Down은 CC0 라이선스 음원만 제공합니다. CC0는 저작권이 없는 퍼블릭 도메인으로, 출처 표기 없이 상업적으로도 자유롭게 사용할 수 있습니다. 단, 일부 음원은 CC-BY 라이선스일 수 있으며, 이 경우 원작자 출처 표기가 필요합니다.',
     },
     {
-      q: '다운로드한 썸네일을 상업적으로 사용해도 되나요?',
-      a: '다운로드된 썸네일의 저작권은 원 콘텐츠 제작자(유튜버) 또는 YouTube에 있습니다. 개인적인 참고나 비영리 목적 외의 상업적 사용은 저작권법 위반이 될 수 있으므로, 반드시 원 제작자의 허락을 받으세요.',
+      q: '어떤 카테고리의 효과음을 제공하나요?',
+      a: '동물 소리, 유튜브 효과음, 자연의 소리, 밈 사운드, 게임 효과음, UI/앱 사운드, 우주/특수 소리, ASMR·백색소음 등 8개 카테고리를 제공합니다. 유튜버·크리에이터·영상 편집자에게 필요한 대부분의 효과음을 찾을 수 있습니다.',
     },
     {
-      q: '어떤 YouTube URL 형식을 지원하나요?',
-      a: '표준 URL(youtube.com/watch?v=...), 짧은 URL(youtu.be/...), Shorts URL(youtube.com/shorts/...) 등 일반적인 모든 YouTube URL 형식을 지원합니다.',
+      q: '음원 소스는 어디서 가져오나요?',
+      a: 'Freesound.org, Pixabay Sound, Mixkit, NASA 공식 사운드, USGS 자연음 등 신뢰할 수 있는 CC0 음원 소스에서 가져옵니다. 모두 저작권 걱정 없이 사용 가능한 합법적 음원입니다.',
     },
     {
       q: '모바일에서도 사용할 수 있나요?',
-      a: '네, 스마트폰과 태블릿을 포함한 모든 기기에서 사용 가능합니다. 반응형 디자인으로 제작되어 화면 크기에 상관없이 편리하게 이용할 수 있습니다.',
+      a: '네, 스마트폰과 태블릿을 포함한 모든 기기에서 사용 가능합니다. 반응형 디자인으로 제작되어 모바일에서도 미리듣기와 다운로드가 편리합니다.',
     },
     {
-      q: '썸네일이 표시되지 않거나 다운로드가 안 돼요.',
-      a: 'YouTube URL이 올바른지 확인해 주세요. 비공개 영상이나 삭제된 영상은 썸네일을 가져올 수 없습니다. 일부 영상은 최고화질 썸네일이 없을 수 있으며, 이 경우 자동으로 낮은 화질로 표시됩니다. 문제가 지속되면 페이지를 새로고침 후 다시 시도해 주세요.',
+      q: '미리듣기가 안 돼요.',
+      a: '브라우저의 자동재생 정책으로 인해 일부 환경에서 미리듣기가 제한될 수 있습니다. 재생 버튼을 직접 클릭하거나, 다른 브라우저를 시도해 보세요. Chrome 최신 버전을 권장합니다.',
     },
     {
-      q: '입력한 URL은 서버에 저장되나요?',
-      a: '아니요. 입력한 YouTube URL은 브라우저에서만 처리되며 어떤 서버에도 저장되지 않습니다. 개인정보는 수집하지 않습니다.',
+      q: '원하는 효과음을 못 찾겠어요.',
+      a: '검색어를 영어로 입력하면 더 많은 결과를 찾을 수 있습니다. 예: "dog bark", "explosion", "rain" 등. 카테고리 탭을 이용해 원하는 분류를 탐색하는 것도 좋은 방법입니다.',
     },
     {
-      q: 'Sound-Down은 무엇인가요?',
-      a: 'Sound-Down(sound-down.com)은 Thumb-Down의 자매 서비스입니다. 유튜버, 크리에이터, 영상 편집자를 위한 무료 효과음 다운로드 사이트로, CC0 라이선스 음원만 제공하여 저작권 걱정 없이 사용할 수 있습니다.',
+      q: 'Thumb-Down은 무엇인가요?',
+      a: 'Thumb-Down(thumb-down.com)은 Sound-Down의 자매 서비스입니다. YouTube 영상의 썸네일을 HD, HQ, SD 등 모든 화질로 무료 다운로드할 수 있는 도구입니다.',
     },
   ],
   en: [
     {
-      q: 'Is Thumb-Down free to use?',
+      q: 'Is Sound-Down free to use?',
       a: 'Yes, completely free. No sign-up or login required. The service is supported by Google AdSense advertising revenue.',
     },
     {
-      q: 'What quality options are available for download?',
-      a: 'All resolutions provided by YouTube are available: HD (maxresdefault, 1280×720), SD (sddefault, 640×480), HQ (hqdefault, 480×360), and MQ (mqdefault, 320×180). If the highest quality is unavailable for a video, the next best quality is used automatically.',
+      q: 'Can I use downloaded sound effects commercially?',
+      a: 'Sound-Down provides CC0-licensed audio only. CC0 is public domain — you can use it commercially without any attribution. Some sounds may be CC-BY licensed, which requires crediting the original author.',
     },
     {
-      q: 'Can I use downloaded thumbnails commercially?',
-      a: 'Downloaded thumbnails are owned by the original content creator or YouTube. Commercial use beyond personal reference may constitute copyright infringement. Always get permission from the original creator before any commercial use.',
+      q: 'What categories of sound effects are available?',
+      a: 'We offer 8 categories: Animal Sounds, YouTube SFX, Nature Sounds, Meme Sounds, Game SFX, UI/App Sounds, Space/Special FX, and ASMR/White Noise. You can find most sounds needed for YouTube, TikTok, and video editing.',
     },
     {
-      q: 'What YouTube URL formats are supported?',
-      a: 'All common YouTube URL formats are supported: standard URLs (youtube.com/watch?v=...), short URLs (youtu.be/...), and Shorts URLs (youtube.com/shorts/...).',
+      q: 'Where do the sounds come from?',
+      a: 'Sounds are sourced from trusted CC0 providers including Freesound.org, Pixabay Sound, Mixkit, NASA official sounds, and USGS nature recordings. All are legally available with no copyright concerns.',
     },
     {
       q: 'Does it work on mobile devices?',
-      a: 'Yes, it works on all devices including smartphones and tablets. The site is fully responsive and works great on any screen size.',
+      a: 'Yes, it works on all devices including smartphones and tablets. The site is fully responsive with mobile-friendly preview and download functionality.',
     },
     {
-      q: 'The thumbnail is not showing or download is not working.',
-      a: 'Please verify the YouTube URL is correct. Private or deleted videos cannot be accessed. Some videos may not have a max-resolution thumbnail, in which case a lower quality is shown automatically. If the issue persists, try refreshing the page.',
+      q: 'Preview is not working.',
+      a: "Browser autoplay policies may restrict audio preview in some environments. Try clicking the play button directly, or use a different browser. We recommend the latest version of Chrome.",
     },
     {
-      q: 'Is my URL saved on your servers?',
-      a: 'No. The YouTube URL you enter is processed entirely in your browser and is never stored on any server. We do not collect personal information.',
+      q: "I can't find the sound effect I need.",
+      a: 'Try searching in English for broader results — e.g., "dog bark", "explosion", "rain". You can also browse by category tabs to explore available sounds.',
     },
     {
-      q: 'What is Sound-Down?',
-      a: 'Sound-Down (sound-down.com) is a sister service to Thumb-Down. It is a free sound effects download site for YouTubers, creators, and video editors, offering only CC0-licensed audio so you can use sounds without any copyright concerns.',
+      q: 'What is Thumb-Down?',
+      a: 'Thumb-Down (thumb-down.com) is a sister service to Sound-Down. It lets you download YouTube video thumbnails in HD, HQ, SD, and all available qualities for free.',
     },
   ],
 }
 
 const META = {
   ko: {
-    title: '자주 묻는 질문 (FAQ) | Thumb-Down',
-    desc: '유튜브 썸네일 다운로드 방법, 화질 선택, 저작권, 무료 여부 등 자주 묻는 질문을 확인하세요.',
+    title: '자주 묻는 질문 (FAQ) | Sound-Down',
+    desc: '무료 효과음 다운로드, CC0 라이선스, 상업적 사용 여부 등 자주 묻는 질문을 확인하세요.',
     heading: '자주 묻는 질문',
-    sub: '유튜브 썸네일 다운로드에 관해 많이 물어보시는 질문을 모았습니다.',
+    sub: '무료 효과음 다운로드에 관해 많이 물어보시는 질문을 모았습니다.',
     contactTitle: '더 궁금한 점이 있으신가요?',
     contactDesc: 'minsiljjag@gmail.com 으로 문의해 주시면 빠르게 답변해 드리겠습니다.',
     linkPrivacy: '개인정보처리방침 →',
     linkTerms: '이용약관 →',
-    footer: '© 2024 Thumb-Down. 유튜브 썸네일 무료 다운로더.',
+    footer: '© 2024 Sound-Down. CC0 무료 효과음 다운로드.',
     langBtn: '🇺🇸 English',
   },
   en: {
-    title: 'FAQ | Thumb-Down — YouTube Thumbnail Downloader',
-    desc: 'Find answers about downloading YouTube thumbnails, quality options, copyright, and more.',
+    title: 'FAQ | Sound-Down — Free CC0 Sound Effects',
+    desc: 'Find answers about downloading free sound effects, CC0 licensing, commercial use, and more.',
     heading: 'Frequently Asked Questions',
-    sub: 'Everything you need to know about downloading YouTube thumbnails.',
+    sub: 'Everything you need to know about downloading free CC0 sound effects.',
     contactTitle: 'Still have questions?',
-    contactDesc: 'Reach us at minsiljjag@gmail.com and we\'ll get back to you quickly.',
+    contactDesc: "Reach us at minsiljjag@gmail.com and we'll get back to you quickly.",
     linkPrivacy: 'Privacy Policy →',
     linkTerms: 'Terms of Service →',
-    footer: '© 2024 Thumb-Down. Free YouTube Thumbnail Downloader.',
+    footer: '© 2024 Sound-Down. Free CC0 Sound Effects Downloader.',
     langBtn: '🇰🇷 한국어',
   },
 }
@@ -105,7 +105,7 @@ export default function Faq() {
   const [open, setOpen] = useState(null)
 
   useEffect(() => {
-    const saved = localStorage.getItem('yt_lang')
+    const saved = localStorage.getItem('sd_lang')
     if (saved && META[saved]) setLang(saved)
   }, [])
 
@@ -113,7 +113,7 @@ export default function Faq() {
     const next = lang === 'ko' ? 'en' : 'ko'
     setLang(next)
     setOpen(null)
-    localStorage.setItem('yt_lang', next)
+    localStorage.setItem('sd_lang', next)
   }
 
   const t = META[lang]
@@ -144,8 +144,8 @@ export default function Faq() {
       <header className="header">
         <div className="wrap header-inner">
           <Link href="/" className="logo">
-            <div className="logo-icon">▶</div>
-            <span className="logo-text">Thumb<span>-Down</span></span>
+            <div className="logo-icon">🔊</div>
+            <span className="logo-text">Sound<span>-Down</span></span>
           </Link>
           <button className="lang-btn" onClick={toggleLang}>{t.langBtn}</button>
         </div>
@@ -159,7 +159,7 @@ export default function Faq() {
           <p style={{ color: 'var(--text2)', fontSize: 15, marginBottom: 48 }}>{t.sub}</p>
 
           <div className="faq-list">
-            {faqs.map(({ q, a }, i) => (
+            {faqs.map(({ q, a }, i => (
               <div
                 key={i}
                 className={`faq-item${open === i ? ' open' : ''}`}
@@ -171,7 +171,7 @@ export default function Faq() {
                 </div>
                 {open === i && <div className="faq-a">{a}</div>}
               </div>
-            ))}
+            )))}
           </div>
 
           <div className="contact-box">
@@ -200,7 +200,7 @@ export default function Faq() {
           border-radius: var(--radius); padding: 18px 20px;
           cursor: pointer; transition: border-color 0.2s; user-select: none;
         }
-        .faq-item:hover { border-color: #444; }
+        .faq-item:hover { border-color: var(--surface3); }
         .faq-item.open { border-color: var(--accent); }
         .faq-q {
           display: flex; justify-content: space-between; align-items: center;

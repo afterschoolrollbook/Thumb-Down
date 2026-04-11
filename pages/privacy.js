@@ -4,16 +4,16 @@ import Link from 'next/link'
 
 const CONTENT = {
   ko: {
-    metaTitle: '개인정보처리방침 | Thumb-Down',
-    metaDesc: 'Thumb-Down 개인정보처리방침 — 수집 정보, 이용 목적, 보관 기간을 안내합니다.',
+    metaTitle: '개인정보처리방침 | Sound-Down',
+    metaDesc: 'Sound-Down 개인정보처리방침 — 수집 정보, 이용 목적, 보관 기간을 안내합니다.',
     title: '개인정보처리방침',
     updated: '최종 업데이트: 2025년 1월 1일',
     sections: [
       {
         title: '1. 수집하는 정보',
-        content: 'Thumb-Down은 서비스 제공을 위해 아래와 같은 정보를 처리할 수 있습니다.',
+        content: 'Sound-Down은 서비스 제공을 위해 아래와 같은 정보를 처리할 수 있습니다.',
         items: [
-          '입력한 YouTube URL (서버에 저장되지 않음, 브라우저에서만 처리)',
+          '입력한 검색어 (서버에 저장되지 않음, 브라우저에서만 처리)',
           'Google AdSense를 통한 쿠키 및 광고 관련 데이터',
           'Google Analytics를 통한 방문 통계 (익명 처리됨)',
         ],
@@ -22,18 +22,18 @@ const CONTENT = {
         title: '2. 정보 이용 목적',
         content: '수집된 정보는 다음 목적으로만 사용됩니다.',
         items: [
-          'YouTube 썸네일 다운로드 기능 제공',
+          '효과음 검색 및 다운로드 기능 제공',
           '서비스 품질 개선 및 통계 분석',
           'Google AdSense 맞춤형 광고 표시',
         ],
       },
       {
         title: '3. 정보 보관 및 파기',
-        content: '입력된 YouTube URL은 어떠한 서버에도 저장되지 않으며, 브라우저 세션 종료 시 자동으로 삭제됩니다. 광고 관련 쿠키는 Google의 개인정보처리방침에 따라 관리됩니다.',
+        content: '입력된 검색어는 어떠한 서버에도 저장되지 않으며, 브라우저 세션 종료 시 자동으로 삭제됩니다. 광고 관련 쿠키는 Google의 개인정보처리방침에 따라 관리됩니다.',
       },
       {
         title: '4. 제3자 제공',
-        content: 'Thumb-Down은 수집한 개인정보를 제3자에게 제공하지 않습니다. 단, Google AdSense 및 Google Analytics 서비스 이용 시 해당 서비스의 약관이 적용됩니다.',
+        content: 'Sound-Down은 수집한 개인정보를 제3자에게 제공하지 않습니다. 단, Google AdSense 및 Google Analytics 서비스 이용 시 해당 서비스의 약관이 적용됩니다.',
         items: ['Google 개인정보처리방침: policies.google.com/privacy'],
       },
       {
@@ -52,20 +52,20 @@ const CONTENT = {
     ],
     linkTerms: '이용약관 →',
     linkFaq: '자주 묻는 질문 →',
-    footer: '© 2024 Thumb-Down. 유튜브 썸네일 무료 다운로더.',
+    footer: '© 2024 Sound-Down. CC0 무료 효과음 다운로드.',
     langBtn: '🇺🇸 English',
   },
   en: {
-    metaTitle: 'Privacy Policy | Thumb-Down',
-    metaDesc: 'Thumb-Down Privacy Policy — learn what information we collect and how we use it.',
+    metaTitle: 'Privacy Policy | Sound-Down',
+    metaDesc: 'Sound-Down Privacy Policy — learn what information we collect and how we use it.',
     title: 'Privacy Policy',
     updated: 'Last updated: January 1, 2025',
     sections: [
       {
         title: '1. Information We Collect',
-        content: 'Thumb-Down may process the following information to provide our service.',
+        content: 'Sound-Down may process the following information to provide our service.',
         items: [
-          'YouTube URLs you enter (never stored on any server — processed in your browser only)',
+          'Search queries you enter (never stored on any server — processed in your browser only)',
           'Cookie and ad-related data via Google AdSense',
           'Anonymous visit statistics via Google Analytics',
         ],
@@ -74,18 +74,18 @@ const CONTENT = {
         title: '2. How We Use Information',
         content: 'Collected information is used solely for the following purposes.',
         items: [
-          'Providing the YouTube thumbnail download feature',
+          'Providing the sound effects search and download feature',
           'Improving service quality and analyzing usage statistics',
           'Displaying personalized ads via Google AdSense',
         ],
       },
       {
         title: '3. Data Retention & Deletion',
-        content: "YouTube URLs you enter are never stored on any server and are automatically cleared when you close your browser session. Ad-related cookies are managed in accordance with Google's Privacy Policy.",
+        content: "Search queries you enter are never stored on any server and are automatically cleared when you close your browser session. Ad-related cookies are managed in accordance with Google's Privacy Policy.",
       },
       {
         title: '4. Third-Party Sharing',
-        content: "Thumb-Down does not share your personal information with third parties. However, when using Google AdSense or Google Analytics, those services' own terms apply.",
+        content: "Sound-Down does not share your personal information with third parties. However, when using Google AdSense or Google Analytics, those services' own terms apply.",
         items: ['Google Privacy Policy: policies.google.com/privacy'],
       },
       {
@@ -104,7 +104,7 @@ const CONTENT = {
     ],
     linkTerms: 'Terms of Service →',
     linkFaq: 'FAQ →',
-    footer: '© 2024 Thumb-Down. Free YouTube Thumbnail Downloader.',
+    footer: '© 2024 Sound-Down. Free CC0 Sound Effects Downloader.',
     langBtn: '🇰🇷 한국어',
   },
 }
@@ -113,14 +113,14 @@ export default function Privacy() {
   const [lang, setLang] = useState('ko')
 
   useEffect(() => {
-    const saved = localStorage.getItem('yt_lang')
+    const saved = localStorage.getItem('sd_lang')
     if (saved && CONTENT[saved]) setLang(saved)
   }, [])
 
   const toggleLang = () => {
     const next = lang === 'ko' ? 'en' : 'ko'
     setLang(next)
-    localStorage.setItem('yt_lang', next)
+    localStorage.setItem('sd_lang', next)
   }
 
   const t = CONTENT[lang]
@@ -136,8 +136,8 @@ export default function Privacy() {
       <header className="header">
         <div className="wrap header-inner">
           <Link href="/" className="logo">
-            <div className="logo-icon">▶</div>
-            <span className="logo-text">Thumb<span>-Down</span></span>
+            <div className="logo-icon">🔊</div>
+            <span className="logo-text">Sound<span>-Down</span></span>
           </Link>
           <button className="lang-btn" onClick={toggleLang}>{t.langBtn}</button>
         </div>
