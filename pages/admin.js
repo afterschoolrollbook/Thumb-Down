@@ -666,7 +666,7 @@ export default function Admin() {
                       <div style={{ color: "#555", fontSize: 12 }}>/blog/{post.slug} · {new Date(post.created_at).toLocaleDateString("ko-KR")}</div>
                     </div>
                     <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
-                      <a href={} target="_blank" rel="noreferrer"
+                      <a href={`/blog/${post.slug}`} target="_blank" rel="noreferrer"
                         style={{ ...S.btn("#2a2a5a"), padding: "6px 12px", fontSize: 12, textDecoration: "none" }}>보기</a>
                       <button onClick={() => handleBlogEdit(post)}
                         style={{ ...S.btn("#2a4a2a"), padding: "6px 12px", fontSize: 12 }}>수정</button>
